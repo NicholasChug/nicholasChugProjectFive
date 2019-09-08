@@ -62,9 +62,11 @@ class App extends Component {
             isComplete: !targeted.isComplete
           })
         }) 
+        this.setState({
+          
+        })
       }
     });
-    this.setState({userTask: ''})
   }
 
   removeTask(taskId) {

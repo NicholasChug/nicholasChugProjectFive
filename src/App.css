@@ -27,6 +27,11 @@ button {
   color: #f6f7eb;
 }
 
+button:hover {
+  background-color: #7daa92;
+  color: black;
+}
+
 .wrapper {
   width: 90%;
   max-width: 1200px;
@@ -91,7 +96,7 @@ li {
 }
 
 .completedTask {
-  color:blue;
+  color:lightgrey;
 }
 
 .footer {
