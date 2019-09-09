@@ -119,7 +119,69 @@ li {
 
 /* Responsive Design Styling */
 
+@media (max-width: 768px) {
+  .submitSection {
+    padding: 5%;
+  }
 
+  .submitSection button {
+    margin-top: 25px;
+  }
+  
+  .toDoListSection {
+    width: 80%;
+  }
+
+  .submitButton {
+    width: 80%;
+  }
+}
+
+@media (max-width: 414px) {
+  .headerSection {
+    height: 80vh;
+  }
+  
+  .introduction {
+    font-size: 2.75rem;
+  }
+
+  .toDoListSection .submitButton {
+    height: 60px;
+  }
+
+  .footer {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .headerSection {
+    height: 90vh;
+  }
+}
+
+@media (max-width: 320px) {
+  .headerSection {
+    height: 80vh;
+  }
+  
+  .title {
+    font-size: 6rem;
+  }
+  
+  .introduction {
+    font-size: 2.5rem;
+  }
+
+  .newItem {
+    width: 80%;
+  }
+
+  .footer {
+    font-size: 1.75rem;
+  }
+}
 
 /* Animation Styling Section */
 

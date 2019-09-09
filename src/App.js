@@ -5,7 +5,6 @@ import SubmitForm from './SubmitForm';
 import TodoList from './TodoList';
 import Footer from './Footer';
 import './App.css';
-import { declareFunction } from '@babel/types';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 
