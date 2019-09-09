@@ -23,7 +23,7 @@ class App extends Component {
        const updatedState = [];
        const data = res.val();
        for (let key in data) {
-         updatedState.push({ uniqueKey: key, task: data[key].task, isComplete: data[key].completed });
+         updatedState.push({ uniqueKey: key, task: data[key].task, isComplete: data[key].isComplete });
        }
        this.setState({
          toDoList: updatedState,
@@ -44,8 +44,15 @@ class App extends Component {
       completed: false,
     }
 
-    const dbRef = firebase.database().ref();
-    dbRef.push(newTask);
+    if (this.state.userTask === '') {
+      alert('Please enter a valid task!');
+    } else {
+       const dbRef = firebase.database().ref();
+       dbRef.push(newTask);
+       this.setState({
+         userTask: ''
+       })
+    }
   }
 
   toggleCompletion = itemID => {
@@ -59,28 +66,24 @@ class App extends Component {
         toDoRef.once('value', (data) => {
           const targeted = data.val();
           toDoRef.update({
-            isComplete: !targeted.isComplete
+            isComplete: !targeted.isComplete,
           })
-        }) 
-        this.setState({
-          
         })
       }
     });
   }
 
   removeTask(taskId) {
-
     const dbRef = firebase.database().ref();
     dbRef.child(taskId).remove();
   }
 
-  removeCompletedTasks(taskId) {
-    const dbRef = firebase.database().ref(`/${this.userTask}`);
-    if(dbRef.isComplete === true) {
-      dbRef.child(taskId).remove();
-    }
-  }
+  // removeCompletedTasks(taskId) {
+  //   const dbRef = firebase.database().ref(`/${this.userTask}`);
+  //   if(dbRef.isComplete === true) {
+  //     dbRef.child(taskId).remove();
+  //   }
+  // }
 
   render() {
     return (
@@ -91,7 +94,7 @@ class App extends Component {
             <label className='addLabel' htmlFor="newItem">Add a task to your list:</label>
             <input type="text" id="newItem" className='newItem' value={this.state.userTask} onChange={this.handleChange}/>
             
-            <button onClick={this.addTask}>Add a Task!</button>
+            <button className='submitButton' onClick={this.addTask}>Add a Task!</button>
           </form>
         </section>
         <section className='toDoListSection wrapper'>
@@ -103,14 +106,14 @@ class App extends Component {
                 <div className='slide-in-left' key={item.uniqueKey}>
                   <li className={item.isComplete ? `completedTask` : `uncompletedTask`}>
                   {item.task}
-                  <input type='checkbox' onClick={() => this.toggleCompletion(item.uniqueKey)}></input>
+                  <input className='checkbox' type='checkbox' onClick={() => this.toggleCompletion(item.uniqueKey)}></input>
                   <button className='icon' onClick={() => this.removeTask(item.uniqueKey)}><i className="fas fa-trash-alt"></i></button>
                   </li>
                 </div>
                 )
               })}
             </ul>
-            <button onClick={() => this.removeCompletedTasks(this.userInput.uniqueKey)}>Remove All Completed Tasks!</button>
+            <button className='submitButton' onClick={this.removeCompletedTasks}>Remove All Completed Tasks!</button>
           </div>
         </section>
         <Footer />
