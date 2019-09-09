@@ -49,11 +49,7 @@ class App extends Component {
     if (this.state.userTask === '') {
       const MySwal = withReactContent(Swal);
       MySwal.fire({
-        title: <p>Hello World</p>,
-        footer: 'Copyright 2018',
         onOpen: () => {
-          // `MySwal` is a subclass of `Swal`
-          //   with all the same instance & static methods
           MySwal.clickConfirm()
         }
       }).then(() => {
@@ -88,12 +84,10 @@ class App extends Component {
   }
 
   removeCompletedTasks= () => {
-    console.log('hey!')
-    console.log(this.state.toDoList);
     this.state.toDoList.map((individualTask) => {
       if (individualTask.isComplete === true) {
         const dbRef = firebase.database().ref();
-        dbRef.remove();
+        dbRef.child(individualTask.uniqueKey).remove();
       }
     })
   }
