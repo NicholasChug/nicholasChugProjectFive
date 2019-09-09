@@ -6,6 +6,8 @@ import TodoList from './TodoList';
 import Footer from './Footer';
 import './App.css';
 import { declareFunction } from '@babel/types';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content';
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +47,18 @@ class App extends Component {
     }
 
     if (this.state.userTask === '') {
-      alert('Please enter a valid task!');
+      const MySwal = withReactContent(Swal);
+      MySwal.fire({
+        title: <p>Hello World</p>,
+        footer: 'Copyright 2018',
+        onOpen: () => {
+          // `MySwal` is a subclass of `Swal`
+          //   with all the same instance & static methods
+          MySwal.clickConfirm()
+        }
+      }).then(() => {
+        return MySwal.fire(<p>Please enter a valid task!</p>)
+      })
     } else {
        const dbRef = firebase.database().ref();
        dbRef.push(newTask);
@@ -58,10 +71,6 @@ class App extends Component {
   toggleCompletion = itemID => {
     this.state.toDoList.map(userTask => {
       if (userTask.uniqueKey === itemID) {
-        // on firebase update isComplete item
-        // Store in a variable a firebase reference for a specific targeted node (userTask.uniqueKey)
-        // Within the firebase .once method 
-          // Using firebase .update method to update isComplete property to the opposite of its current value
         const toDoRef = firebase.database().ref(`/${userTask.uniqueKey}`);
         toDoRef.once('value', (data) => {
           const targeted = data.val();
@@ -78,17 +87,22 @@ class App extends Component {
     dbRef.child(taskId).remove();
   }
 
-  // removeCompletedTasks(taskId) {
-  //   const dbRef = firebase.database().ref(`/${this.userTask}`);
-  //   if(dbRef.isComplete === true) {
-  //     dbRef.child(taskId).remove();
-  //   }
-  // }
+  removeCompletedTasks= () => {
+    console.log('hey!')
+    console.log(this.state.toDoList);
+    this.state.toDoList.map((individualTask) => {
+      if (individualTask.isComplete === true) {
+        const dbRef = firebase.database().ref();
+        dbRef.remove();
+      }
+    })
+  }
 
   render() {
     return (
       <div className="App">
         <Header />
+        {/* <SubmitForm /> */}
         <section className='submitSection wrapper'>
           <form action="submit">
             <label className='addLabel' htmlFor="newItem">Add a task to your list:</label>
@@ -97,6 +111,7 @@ class App extends Component {
             <button className='submitButton' onClick={this.addTask}>Add a Task!</button>
           </form>
         </section>
+        {/* <ToDoList /> */}
         <section className='toDoListSection wrapper'>
           <div className="listedItems">
             <h2>Today's Tasks:</h2>
