@@ -6,6 +6,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 .visuallyHidden:not(:focus):not(:active) { position: absolute; width: 1px; height: 1px; margin: -1px;border: 0;padding: 0;white-space: nowrap;clip-path: inset(100%);clip: rect(00 0 0);overflow: hidden;}
 
+/* General Styling */
 .App {
   text-align: center;
 }
@@ -27,15 +28,6 @@ button {
   color: #f6f7eb;
 }
 
-.icon:hover {
-  color: red;
-}
-
-.submitButton:hover {
-  background-color: #7daa92;
-  color: black;
-}
-
 .wrapper {
   width: 90%;
   max-width: 1200px;
@@ -46,6 +38,7 @@ body {
   font-family: 'Nunito', sans-serif;
 }
 
+/* Header Sectin Styling */
 .headerSection {
   background-color: #3bb273;
   padding: 5%;
@@ -63,8 +56,14 @@ body {
   color: #f6f7eb;
 }
 
+/* Submit Section Styling */
 .submitSection {
   padding: 2%;
+}
+
+.submitButton:hover {
+  background-color: #7daa92;
+  color: black;
 }
 
 .addLabel {
@@ -76,6 +75,7 @@ body {
   font-size: 2rem;
 }
 
+/* To Do List Section Styling */
 .toDoListSection {
   background-color: #edffd9;
   font-size: 3rem;
@@ -101,6 +101,10 @@ li {
   color: black;
 }
 
+.icon:hover {
+  color: red;
+}
+
 .uncompletedTask {
   color: black;
 }
@@ -110,6 +114,7 @@ li {
   text-decoration: line-through;
 }
 
+/* Footer Section Styling */
 .footer {
   background-color: #3bb273;
   padding: 10px;

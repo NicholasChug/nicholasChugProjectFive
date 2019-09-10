@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import firebase from './firebase';
 import Header from './Header';
-import SubmitForm from './SubmitForm';
-import TodoList from './TodoList';
 import Footer from './Footer';
 import './App.css';
 import Swal from 'sweetalert2'
@@ -95,7 +93,6 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        {/* <SubmitForm /> */}
         <section className='submitSection wrapper'>
           <form action="submit">
             <label className='addLabel' htmlFor="newItem">Add a task to your list:</label>
@@ -104,7 +101,6 @@ class App extends Component {
             <button className='submitButton' onClick={this.addTask}>Add a Task!</button>
           </form>
         </section>
-        {/* <ToDoList /> */}
         <section className='toDoListSection wrapper'>
           <div className="listedItems">
             <h2>Today's Tasks:</h2>
