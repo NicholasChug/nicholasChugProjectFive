@@ -1,3 +1,9 @@
+today. A simply to-do list web application
+
+This project was built using React.js and firebase, and was my first project using these technologies! With a firebase server set up for the database, the inputed user data is kept consistent upon browser refresh allowing for persistent data. Over time, I want to look into adding google firebase authentication, allowing for a unique user experience that depends upon login.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
